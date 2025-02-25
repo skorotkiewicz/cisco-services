@@ -4,7 +4,9 @@ import {
   processWeatherData,
   formatTemperature,
   send,
+  formatTime,
 } from "./utils.js";
+import { urlServer } from "./config.js";
 const router = express.Router();
 
 const weatherCache = {
@@ -19,11 +21,11 @@ router.get("/Cisco/services.xml", (req, res) => {
       <Prompt>Select a service:</Prompt>
       <MenuItem>
         <Name>Weather Forecast</Name>
-        <URL>http://192.168.0.124:3000/Cisco/Weather</URL>
+        <URL>${urlServer}/Cisco/Weather</URL>
       </MenuItem>
       <MenuItem>
         <Name>Lotto Results</Name>
-        <URL>http://192.168.0.124:3000/Cisco/Lotto</URL>
+        <URL>${urlServer}/Cisco/Lotto</URL>
       </MenuItem>
     </CiscoIPPhoneMenu>`;
 
@@ -76,8 +78,8 @@ function sendWeatherResponse(res, forecasts) {
         .map(
           (forecast) => `
         <MenuItem>
-          <Name>${new Date(forecast.time).toLocaleString("pl-PL")}: ${formatTemperature(forecast.temperature)}, ${forecast.condition}</Name>
-          <URL>http://192.168.0.124:3000/Cisco/Weather/Details/${forecast.id}</URL>
+          <Name>${formatTime(forecast.time)}: ${formatTemperature(forecast.temperature)}, ${forecast.condition}</Name>
+          <URL>${urlServer}/Cisco/Weather/Details/${forecast.id}</URL>
         </MenuItem>
       `,
         )
@@ -103,7 +105,7 @@ router.get("/Cisco/Weather/Details/:id", async (req, res) => {
       <CiscoIPPhoneText>
         <Title>Weather Details</Title>
         <Text>
-Date: ${new Date(forecast.time).toLocaleString("pl-PL")}
+Date: ${new Date(forecast.time).toLocaleString("en-US")}
 Temperature: ${formatTemperature(details.air_temperature)}
 Pressure: ${Math.round(details.air_pressure_at_sea_level)} hPa
 Humidity: ${Math.round(details.relative_humidity)}%

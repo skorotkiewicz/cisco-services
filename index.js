@@ -1,7 +1,7 @@
 import express from "express";
 import cisco from "./cisco.js";
+import { port } from "./config.js";
 const app = express();
-const port = 3000;
 
 app.use("/", cisco);
 

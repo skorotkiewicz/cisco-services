@@ -122,6 +122,7 @@ Conditions: ${forecast.condition}
 });
 
 router.get("/Cisco/Lotto", async (req, res) => {
+  // WIP TODO
   try {
     const lottoData = getSimulatedLottoData();
     const xml = `
@@ -145,8 +146,8 @@ Nastepne losowanie: ${lottoData.nextDrawDate}
 function sendErrorResponse(res) {
   const errorXml = `
     <CiscoIPPhoneText>
-      <Title>Blad</Title>
-      <Text>Wystapil blad podczas pobierania danych.</Text>
+      <Title>Error</Title>
+      <Text>There was an error while fetching the data.</Text>
     </CiscoIPPhoneText>`;
 
   return send(errorXml, res);

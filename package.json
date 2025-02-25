@@ -1,9 +1,13 @@
 {
+  "name": "cisco-services",
   "type": "module",
   "scripts": {
     "start": "node index.js"
   },
   "dependencies": {
     "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4"
   }
 }

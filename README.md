@@ -55,9 +55,9 @@ Server settings can be found in the `config.js` file.
 
 ## Configure the Phone
 
-To configure your Cisco IP Phone, you should refer to the guide of your model.
-For convenience I add the config for the 79XX models.
-You should modify the provisioning configuration and add the url into the section serviceURL.
+To configure your Cisco IP Phone, you should refer to the guide of your model.  
+For convenience I add the config for the 79XX models.  
+You should modify the provisioning configuration and add the url into the section `<servicesURL>`.
 
 ```xml
 <device>

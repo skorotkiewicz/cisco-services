@@ -54,7 +54,7 @@ router.get("/Cisco/Weather", async (req, res) => {
       `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${weather.LATITUDE}&lon=${weather.LONGITUDE}`,
       {
         headers: {
-          "User-Agent": "Cisco 7942G/1.0 (skorotkiewicz@gmail.com)",
+          "User-Agent": "Cisco Phone Services",
         },
       },
     );

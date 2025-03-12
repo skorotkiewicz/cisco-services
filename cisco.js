@@ -7,7 +7,7 @@ import {
   send,
   formatTime,
 } from "./utils.js";
-import { urlServer } from "./config.js";
+import { urlServer, weather } from "./config.js";
 const router = express.Router();
 
 const weatherCache = {
@@ -42,11 +42,8 @@ router.get("/Cisco/services.xml", (req, res) => {
 });
 
 router.get("/Cisco/Weather", async (req, res) => {
-  const LATITUDE = 48.8082;
-  const LONGITUDE = 11.7551;
-
   try {
-    // Sprawdź cache
+    // Check cache
     if (weatherCache.data && weatherCache.timestamp > Date.now() - 1800000) {
       const forecasts = processWeatherData(weatherCache.data);
       sendWeatherResponse(res, forecasts);
@@ -54,7 +51,7 @@ router.get("/Cisco/Weather", async (req, res) => {
     }
 
     const response = await fetch(
-      `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${LATITUDE}&lon=${LONGITUDE}`,
+      `https://api.met.no/weatherapi/locationforecast/2.0/compact?lat=${weather.LATITUDE}&lon=${weather.LONGITUDE}`,
       {
         headers: {
           "User-Agent": "Cisco 7942G/1.0 (skorotkiewicz@gmail.com)",

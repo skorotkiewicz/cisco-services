@@ -18,7 +18,7 @@ A simple server providing services for Cisco phones, including weather forecasts
 1. Clone the repository:
    ```
    git clone https://github.com/skorotkiewicz/cisco-services.git
-   cd cisco
+   cd cisco-services
    ```
 
 2. Install dependencies:

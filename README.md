@@ -47,7 +47,7 @@ or
 bun start
 ```
 
-The server will run on the configured port (default is port 8080).
+The server will run on the configured port (default is port 3000).
 
 ## Configuration
 

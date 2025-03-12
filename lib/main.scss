@@ -1,47 +1,147 @@
+// Variables
+$cisco-blue: #049fd9;
+$cisco-dark-blue: #005073;
+$cisco-light-gray: #f5f7fa;
+$cisco-border: #e6e6e6;
+$text-color: #333;
+$spacing-unit: 1rem;
+$border-radius: 8px;
+
+// Import color module (for Sass 1.33.0+)
+@use "sass:color";
+
+* {
+  box-sizing: border-box;
+}
+
+// Base styles
+html,
 body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  height: 100%;
   margin: 0;
   padding: 0;
-  background-color: #f5f7fa;
-  color: #333;
-  line-height: 1.6;
+  overflow-x: hidden;
 }
 
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: $cisco-light-gray;
+  color: $text-color;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+// Header styles
+header {
+  background-color: $cisco-blue;
+  color: white;
+  padding: $spacing-unit * 1.5 $spacing-unit;
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+// Main content
 main {
   max-width: 800px;
-  margin: 2rem auto;
-  padding: 2rem;
+  width: calc(100% - #{$spacing-unit * 4});
+  margin: $spacing-unit * 2 auto;
+  padding: $spacing-unit * 2;
   background-color: white;
-  border-radius: 8px;
+  border-radius: $border-radius;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  flex: 1 0 auto;
+  box-sizing: border-box;
+  overflow-x: auto;
 }
 
-h2 {
-  color: #049fd9;
-  border-bottom: 2px solid #e6e6e6;
-  padding-bottom: 0.5rem;
-  margin-top: 0;
-}
-
+// Text and links
 p {
-  margin-bottom: 1.5rem;
+  margin-bottom: $spacing-unit * 1.5;
+  max-width: 100%;
+  word-wrap: break-word;
 }
 
 a {
-  color: #005073;
+  color: $cisco-dark-blue;
   text-decoration: none;
   transition: color 0.2s;
   font-weight: 500;
+  word-break: break-all;
 
   &:hover {
-    color: #049fd9;
+    color: $cisco-blue;
     text-decoration: underline;
   }
 }
 
+// List styles
+ul {
+  list-style-type: none;
+  padding-left: $spacing-unit;
+  margin-top: $spacing-unit;
+  max-width: 100%;
+}
+
+li {
+  margin-bottom: $spacing-unit * 0.5;
+  position: relative;
+  max-width: 100%;
+
+  &:before {
+    content: "•";
+    color: $cisco-blue;
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1em;
+  }
+
+  a {
+    display: inline-block;
+    padding: $spacing-unit * 0.25 0;
+    max-width: 100%;
+  }
+}
+
+// Footer styles
+footer {
+  background-color: $cisco-dark-blue;
+  color: white;
+  text-align: center;
+  padding: $spacing-unit;
+  flex-shrink: 0;
+  width: 100%;
+  box-sizing: border-box;
+
+  a {
+    color: white;
+    text-decoration: underline;
+    font-weight: 400;
+
+    &:hover {
+      color: color.adjust($cisco-blue, $lightness: 30%);
+    }
+  }
+}
+
+// Responsive adjustments
 @media (max-width: 600px) {
   main {
-    margin: 1rem;
-    padding: 1.5rem;
+    margin: $spacing-unit;
+    padding: $spacing-unit * 1.5;
+    width: calc(100% - #{$spacing-unit * 2});
+  }
+
+  header {
+    padding: $spacing-unit;
+    font-size: 1.3rem;
   }
 }

@@ -17,6 +17,15 @@ router.get("/Cisco/PhoneBook", (req, res) => {
       </InputItem>
     </CiscoIPPhoneInput>`;
 
+  // <InputFlags> can by:
+  // A:Text,
+  // T:Phone num,
+  // N:numeric,
+  // E:equaion,
+  // U:only uppercase,
+  // L:only lowercase,
+  // P:password
+
   return send(xml, res);
 });
 

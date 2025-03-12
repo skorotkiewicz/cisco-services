@@ -1,4 +1,5 @@
 import express from "express";
+import ping from "ping";
 import {
   getSimulatedLottoData,
   processWeatherData,
@@ -24,8 +25,16 @@ router.get("/Cisco/services.xml", (req, res) => {
         <URL>${urlServer}/Cisco/Weather</URL>
       </MenuItem>
       <MenuItem>
+        <Name>Phone Book</Name>
+        <URL>${urlServer}/Cisco/PhoneBook</URL>
+      </MenuItem>
+      <MenuItem>
         <Name>Lotto Results</Name>
         <URL>${urlServer}/Cisco/Lotto</URL>
+      </MenuItem>
+      <MenuItem>
+        <Name>Ping</Name>
+        <URL>${urlServer}/Cisco/Ping</URL>
       </MenuItem>
     </CiscoIPPhoneMenu>`;
 
@@ -135,6 +144,25 @@ Ostatnie losowanie: ${lottoData.drawDate}
 Numery: ${lottoData.numbers.join(", ")}
 Super Number: ${lottoData.superNumber}
 Nastepne losowanie: ${lottoData.nextDrawDate}
+        </Text>
+      </CiscoIPPhoneText>`;
+
+    return send(xml, res);
+  } catch (error) {
+    console.error("Error generating lotto response:", error);
+    sendErrorResponse(res);
+  }
+});
+
+router.get("/Cisco/Ping", async (req, res) => {
+  try {
+    const pingResult = await ping.promise.probe("google.com");
+
+    const xml = `
+      <CiscoIPPhoneText>
+        <Title>Ping google.com</Title>
+        <Text>
+        Ping: ${pingResult.time} ms
         </Text>
       </CiscoIPPhoneText>`;
 

@@ -5,7 +5,8 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "express": "^4.21.2"
+    "express": "^4.21.2",
+    "ping": "^0.4.4"
   },
   "devDependencies": {
     "@biomejs/biome": "^1.9.4"

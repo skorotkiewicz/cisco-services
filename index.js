@@ -1,6 +1,6 @@
 import express from "express";
-import cisco from "./cisco.js";
-import directory from "./directory.js";
+import cisco from "./lib/cisco.js";
+import directory from "./lib/directory.js";
 import { port, urlServer } from "./config.js";
 const app = express();
 

@@ -7,6 +7,11 @@ const app = express();
 app.use("/", cisco);
 app.use("/", directory);
 
+// Main page
+app.get("/", (_req, res) => {
+  res.send(`Cisco Phone Services: ${urlServer}/Cisco/services.xml`);
+});
+
 app.listen(port, () => {
   console.log(`Server running at ${urlServer}`);
 });

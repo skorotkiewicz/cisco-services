@@ -60,7 +60,7 @@ router.get("/Cisco/Weather", async (req, res) => {
     );
 
     if (!response.ok) {
-      throw new Error(`HTTP error! Status: ${response.status}`);
+      return sendErrorResponse(res, `HTTP error! Status: ${response.status}`);
     }
 
     const data = await response.json();
@@ -98,12 +98,12 @@ function sendWeatherResponse(res, forecasts) {
 router.get("/Cisco/Weather/Details/:id", async (req, res) => {
   try {
     if (!weatherCache.data) {
-      throw new Error("No weather data available");
+      return sendErrorResponse(res, "No weather data available");
     }
 
     const forecast = processWeatherData(weatherCache.data)[req.params.id];
     if (!forecast) {
-      throw new Error("Forecast not found");
+      return sendErrorResponse(res, "Forecast not found");
     }
 
     const details = forecast.details;
@@ -170,11 +170,14 @@ router.get("/Cisco/Ping", async (req, res) => {
   }
 });
 
-function sendErrorResponse(res) {
+function sendErrorResponse(
+  res,
+  text = "There was an error while fetching the data.",
+) {
   const errorXml = `
     <CiscoIPPhoneText>
       <Title>Error</Title>
-      <Text>There was an error while fetching the data.</Text>
+      <Text>${text}</Text>
     </CiscoIPPhoneText>`;
 
   return send(errorXml, res);

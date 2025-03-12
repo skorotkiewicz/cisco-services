@@ -1,13 +1,8 @@
 import express from "express";
 import { send } from "./utils.js";
 import { urlServer } from "./config.js";
+import phone_book from "./phone_book.js";
 const router = express.Router();
-
-const phone_book = [
-  { name: "John", phone: "+44012345678" },
-  { name: "Mary", phone: "+44112223321" },
-  { name: "Tom", phone: "+4401321" },
-];
 
 router.get("/Cisco/PhoneBook", (req, res) => {
   const xml = `

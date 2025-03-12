@@ -53,6 +53,21 @@ The server will run on the configured port (default is port 3000).
 
 Server settings can be found in the `config.js` file.
 
+## Configure the Phone
+
+To configure your Cisco IP Phone, you should refer to the guide of your model.
+For convenience I add the config for the 79XX models.
+You should modify the provisioning configuration and add the url into the section serviceURL.
+
+```xml
+<device>
+    <!-->Other config infos <-->
+    <servicesURL>http://192.168.0.124:3000/Cisco/services.xml</servicesURL>
+</device>
+```
+
+Make sure that the IP Phone and the server are on the same network.
+
 ## License
 
 MIT
